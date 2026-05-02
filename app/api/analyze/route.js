@@ -6,7 +6,7 @@ export async function POST(req) {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "x-api-key": "sk-ant-api03-1kYm2ebZZnzrZGjLRn_IQ0SHQ1CIRxJ7vMFmDetWIq2KuLHOb-UTiU_asaHZHP1iUvX-HaQ4tO-5dzpK70D6Lg-8nWkOgAA",
+        "x-api-key": process.env.ANTHROPIC_API_KEY,
         "anthropic-version": "2023-06-01"
       },
       body: JSON.stringify({ model: "claude-sonnet-4-20250514", max_tokens: 1000, system: "Devuelve SOLO JSON sin backticks. Campos: tipo, personas, presupuesto_total, resumen, servicios(array con categoria/nombre/descripcion/presupuesto_sugerido/prioridad)", messages: [{ role: "user", content: prompt }] })

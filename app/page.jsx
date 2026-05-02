@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import ReinaXVScreen from "./components/ReinaXVScreen";
 
 const BRAND = {
   blue: "#1B6FE8",
@@ -92,7 +93,8 @@ export default function PartySonApp() {
     ? MOCK_PROVIDERS.filter((p) => p.category === activeCategory)
     : [];
 
-  if (screen === "home") return <HomeScreen input={input} setInput={setInput} onAnalyze={analyzeEvent} examples={examples} textareaRef={textareaRef} />;
+  if (screen === "xv") return <ReinaXVScreen onBack={() => setScreen("home")} />;
+  if (screen === "home") return <HomeScreen input={input} setInput={setInput} onAnalyze={analyzeEvent} examples={examples} textareaRef={textareaRef} onNavigateXV={() => setScreen("xv")} />;
   if (screen === "loading") return <LoadingScreen />;
   if (screen === "results") return (
     <ResultsScreen
@@ -115,7 +117,7 @@ export default function PartySonApp() {
   );
 }
 
-function HomeScreen({ input, setInput, onAnalyze, examples, textareaRef }) {
+function HomeScreen({ input, setInput, onAnalyze, examples, textareaRef, onNavigateXV }) {
   const [focused, setFocused] = useState(false);
   const [particles] = useState(() =>
     Array.from({ length: 20 }, (_, i) => ({
@@ -265,6 +267,28 @@ function HomeScreen({ input, setInput, onAnalyze, examples, textareaRef }) {
               {ex}
             </button>
           ))}
+        </div>
+
+        {/* Reina XV Banner */}
+        <div
+          onClick={onNavigateXV}
+          className="anim-4"
+          style={{
+            marginTop: 16, width: "100%", maxWidth: 640,
+            background: "linear-gradient(135deg,#1a0a2e 0%,#5b1c9f 100%)",
+            borderRadius: 20, padding: "14px 18px",
+            display: "flex", alignItems: "center", gap: 12,
+            cursor: "pointer", position: "relative", overflow: "hidden",
+          }}
+        >
+          <div style={{ position: "absolute", right: -10, top: -10, width: 80, height: 80, borderRadius: "50%", background: "rgba(255,214,0,0.12)", pointerEvents: "none" }} />
+          <span style={{ fontSize: 28, flexShrink: 0 }}>👑</span>
+          <div style={{ flex: 1 }}>
+            <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: 2, color: "#FFD600", textTransform: "uppercase", marginBottom: 2 }}>Nuevo · Reina XV</div>
+            <div style={{ fontFamily: "Nunito", fontSize: 14, fontWeight: 700, color: "white", marginBottom: 1 }}>Tu fiesta de XV perfecta</div>
+            <div style={{ fontSize: 10, color: "rgba(255,255,255,0.65)" }}>Paquetes, show en vivo y financiamiento</div>
+          </div>
+          <span style={{ fontSize: 20, color: "rgba(255,255,255,0.5)", flexShrink: 0 }}>›</span>
         </div>
       </main>
 

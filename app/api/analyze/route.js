@@ -14,7 +14,7 @@ export async function POST(req) {
           "anthropic-version": "2023-06-01",
         },
         body: JSON.stringify({
-          model: "claude-sonnet-4-20250514",
+          model: "claude-sonnet-4-6",
           max_tokens: 1000,
           system: "Devuelve SOLO JSON sin backticks ni markdown. Campos requeridos: tipo, personas, presupuesto_total, resumen, servicios (array con: categoria, nombre, descripcion, presupuesto_sugerido, prioridad). Categorías válidas: salon, sonido, catering, decoracion, fotografia, entretenimiento, pastel, transporte. Prioridades: alta, media, baja.",
           messages: [{ role: "user", content: body.prompt }],
@@ -36,7 +36,7 @@ export async function POST(req) {
           "anthropic-version": "2023-06-01",
         },
         body: JSON.stringify({
-          model: "claude-sonnet-4-20250514",
+          model: "claude-sonnet-4-6",
           max_tokens: 1000,
           messages: body.messages,
         }),
